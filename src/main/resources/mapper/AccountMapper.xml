@@ -1,0 +1,31 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letsave.finance.mapper.AccountMapper">
+
+	<!-- Find account by Column -->
+	<select id="findAccountByColumn" resultType="com.letsave.finance.model.AccountModel" >
+		SELECT id, username, password FROM accounts WHERE ${column} = #{value};
+	</select>
+
+	<!-- Insert new Account and get id auto-generate -->
+	<insert id="insertAccount" parameterType="com.letsave.finance.model.AccountModel" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO accounts (username, password)
+		VALUES (#{username}, #{password});
+	</insert>
+
+	<!-- Change password -->
+	<update id="updateAccountPassword">
+		UPDATE accounts SET
+			password = #{value}
+		WHERE id = #{id};
+	</update>
+
+<!--	&lt;!&ndash; Delete account by Column &ndash;&gt;-->
+<!--	<delete id="deleteAccountByColumn">-->
+<!--		DELETE FROM accounts-->
+<!--		WHERE ${column} = #{value};-->
+<!--	</delete>-->
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letsave.finance.mapper.ProfileMapper">
+
+	<!-- Find Profile by given column -->
+	<select id="findProfileByColumn" resultType="com.letsave.finance.model.ProfileModel" >
+		SELECT accountId, fullname, email, phone, birthday, avatar FROM profiles WHERE ${column} = #{value};
+	</select>
+
+	<!-- Insert new Profile -->
+	<insert id="insertProfile" parameterType="com.letsave.finance.model.ProfileModel" >
+		INSERT INTO profiles (accountId, fullname, birthday, email, phone, avatar)
+		VALUES (#{accountId}, #{fullname}, #{birthday}, #{email}, #{phone}, #{avatar});
+	</insert>
+
+	<update id="updateProfile" parameterType="com.letsave.finance.model.ProfileModel">
+		update profiles
+		set fullname = #{fullname},
+		    email = #{email},
+		    phone = #{phone},
+		    birthday = #{birthday},
+		    avatar = #{avatar}
+		where accountId = #{accountId};
+	</update>
+
+</mapper>

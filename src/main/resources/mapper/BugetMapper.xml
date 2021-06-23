@@ -1,0 +1,32 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letsave.finance.mapper.BudgetMapper">
+
+	<insert id="insertBudget" parameterType="com.letsave.finance.model.BugetModel">
+		insert into budgets (accountId, categoryId, name, amount, status, date, actualAmount)
+		values (#{accountId}, #{categoryId}, #{name}, #{amount}, #{status}, curdate(), #{actualAmount});
+	</insert>
+
+	<update id="updateBudget">
+		update budgets
+		set categoryId = #{categoryId},
+		    name = #{name},
+		    amount = #{amount},
+		    status = #{status},
+		  	actualAmount = #{actualAmount}
+		where id = #{id} and accountId = #{accountId} and month(`date`) = #{month} and year(`date`) = #{year};
+	</update>
+
+	<select id="findBudgetByColumn" resultType="com.letsave.finance.model.BugetModel">
+		select * from budgets
+		where ${column} = #{value};
+	</select>
+
+	<select id="findBudgetByCategoryId" resultType="com.letsave.finance.model.BugetModel">
+		select * from budgets
+		where categoryId = #{categoryId} and accountId = #{accountId} and month(`date`) = #{month} and year(`date`) = #{year};
+	</select>
+
+</mapper>

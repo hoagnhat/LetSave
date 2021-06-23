@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letsave.finance.mapper.CategoryMapper">
+
+	<select id="findCategoryByColumn" resultType="com.letsave.finance.model.CategoryModel">
+		select * from categories where ${column} = #{value};
+	</select>
+
+	<insert id="insertCategory" parameterType="com.letsave.finance.model.CategoryModel" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		insert into categories (name, image)
+		values (#{name}, #{image});
+	</insert>
+
+	<select id="findCategoriesByAccountId" resultType="com.letsave.finance.model.CategoryModel">
+		select c.id, c.name, c.image from categories c left join accounts_categories ac on c.id = ac.categoryId
+		where accountId = #{accountId};
+	</select>
+
+</mapper>

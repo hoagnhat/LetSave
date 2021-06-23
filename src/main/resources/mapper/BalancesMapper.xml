@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letsave.finance.mapper.BalancesMapper">
+
+	<insert id="insertBalance" parameterType="com.letsave.finance.model.BalanceModel">
+		insert into balances (accountId, total)
+		values (#{accountId}, #{total});
+	</insert>
+
+	<update id="updateBalance" parameterType="com.letsave.finance.model.BalanceModel">
+		update balances
+		set total = #{total}
+		where accountId = #{accountId};
+	</update>
+
+	<select id="findBalanceByColumn" resultType="com.letsave.finance.model.BalanceModel">
+		select * from balances
+		where ${column} = #{value};
+	</select>
+
+</mapper>
