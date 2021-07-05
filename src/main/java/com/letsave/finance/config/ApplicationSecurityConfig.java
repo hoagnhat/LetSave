@@ -28,23 +28,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-            .cors()
-              .disable()
             .csrf()
               .disable()
             .authorizeRequests()
-              .antMatchers("/accounts/register")
+              .antMatchers("/accounts/register", "/")
                 .permitAll()
             .anyRequest()
               .authenticated()
             .and()
-            .formLogin()
-              .loginProcessingUrl("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-              .permitAll()
+            .httpBasic()
               .and()
-            .logout()
+            .logout().invalidateHttpSession(true).deleteCookies().clearAuthentication(true)
               .permitAll();
   }
 
