@@ -18,5 +18,6 @@ public class InsertTransactionRequest {
   private String type;
   private float amount;
   private long categoryId;
+  private String note;
 
 }

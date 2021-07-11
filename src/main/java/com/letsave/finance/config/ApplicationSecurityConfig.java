@@ -29,24 +29,23 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
             .csrf()
-              .disable()
+            .disable()
             .authorizeRequests()
-              .antMatchers("/accounts/register", "/")
-                .permitAll()
+            .antMatchers("/accounts/register", "/")
+            .permitAll()
             .anyRequest()
-              .authenticated()
+            .authenticated()
             .and()
             .httpBasic()
-              .and()
+            .and()
             .logout().invalidateHttpSession(true).deleteCookies().clearAuthentication(true)
-              .permitAll();
+            .permitAll();
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(applicationUserService).passwordEncoder(passwordEncoder);
   }
-
 
 
 }

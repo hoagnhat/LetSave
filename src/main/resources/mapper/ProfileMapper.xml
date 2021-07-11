@@ -6,13 +6,13 @@
 
 	<!-- Find Profile by given column -->
 	<select id="findProfileByColumn" resultType="com.letsave.finance.model.ProfileModel" >
-		SELECT accountId, fullname, email, phone, birthday, avatar FROM profiles WHERE ${column} = #{value};
+		SELECT accountId, fullname, email, phone, birthday, avatar, job, isMale, age FROM profiles WHERE ${column} = #{value};
 	</select>
 
 	<!-- Insert new Profile -->
 	<insert id="insertProfile" parameterType="com.letsave.finance.model.ProfileModel" >
-		INSERT INTO profiles (accountId, fullname, birthday, email, phone, avatar)
-		VALUES (#{accountId}, #{fullname}, #{birthday}, #{email}, #{phone}, #{avatar});
+		INSERT INTO profiles (accountId, fullname, birthday, email, phone, avatar, job, isMale, age)
+		VALUES (#{accountId}, #{fullname}, #{birthday}, #{email}, #{phone}, #{avatar}, #{job}, #{isMale}, #{age});
 	</insert>
 
 	<update id="updateProfile" parameterType="com.letsave.finance.model.ProfileModel">
@@ -21,7 +21,10 @@
 		    email = #{email},
 		    phone = #{phone},
 		    birthday = #{birthday},
-		    avatar = #{avatar}
+		    avatar = #{avatar},
+		    job = #{job},
+		    isMale = #{isMale},
+		    age = #{age}
 		where accountId = #{accountId};
 	</update>
 

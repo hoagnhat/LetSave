@@ -5,13 +5,9 @@ package com.letsave.finance.service;
 */
 
 import com.letsave.finance.mapper.ProfileMapper;
-import com.letsave.finance.model.AccountModel;
 import com.letsave.finance.model.ProfileModel;
 import com.letsave.finance.request.UpdateProfileRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,6 +33,9 @@ public class ProfileService {
             .phone(request.getPhone())
             .birthday(request.getBirthday())
             .avatar(request.getAvatar())
+            .job(request.getJob())
+            .isMale(request.isMale())
+            .age(request.getAge())
             .build();
 
     mapper.updateProfile(profile);

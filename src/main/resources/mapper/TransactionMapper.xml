@@ -5,8 +5,8 @@
 <mapper namespace="com.letsave.finance.mapper.TransactionMapper">
 
 	<insert id="insertTransaction" parameterType="com.letsave.finance.mapper.TransactionMapper">
-		insert into transactions (accountId, type, amount, categoryId, date)
-		values (#{accountId}, #{type}, #{amount}, #{categoryId}, curdate());
+		insert into transactions (accountId, type, amount, categoryId, date, note)
+		values (#{accountId}, #{type}, #{amount}, #{categoryId}, curdate(), #{note});
 	</insert>
 
 	<select id="findDailyTransaction" resultType="com.letsave.finance.model.TransactionDTO">
@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="findMonthlyTransaction" resultType="com.letsave.finance.model.TransactionDTO">
-		select t.id, t.type, sum(amount), t.categoryId, t.date, c.name as 'categoryName', c.image as 'categoryImage'
+		select t.id, t.type, sum(amount), t.categoryId, t.date c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
 		where year(`date`) = #{year} and ${column} = #{value}
 		group by date;
@@ -27,12 +27,13 @@
 		set `type` = #{type},
 		    amount = #{amount},
 		    categoryId = #{categoryId},
-		    date = curdate()
+		    date = curdate(),
+		    note = #{note}
 		where id = #{id};
 	</update>
 
 	<select id="findTransactionByColumn" resultType="com.letsave.finance.model.TransactionDTO">
-		select t.id, t.type, t.amount, t.categoryId, t.date, c.name as 'categoryName', c.image as 'categoryImage'
+		select t.id, t.type, t.amount, t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
 		where ${column} = #{value} and accountId = #{accountId};
 	</select>

@@ -21,5 +21,6 @@ public class TransactionModel {
   private float amount;
   private long categoryId;
   private Date date;
+  private String note;
 
 }

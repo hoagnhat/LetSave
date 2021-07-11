@@ -20,5 +20,8 @@ public class UpdateProfileRequest {
   private String phone;
   private Date birthday;
   private String avatar;
+  private String job;
+  private boolean isMale;
+  private int age;
 
 }

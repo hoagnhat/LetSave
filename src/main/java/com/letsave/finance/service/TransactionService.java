@@ -36,6 +36,7 @@ public class TransactionService {
             .type(request.getType())
             .amount(request.getAmount())
             .categoryId(request.getCategoryId())
+            .note(request.getNote())
             .build();
 
     mapper.insertTransaction(transaction);

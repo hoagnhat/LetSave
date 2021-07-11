@@ -20,6 +20,7 @@ public class TransactionDTO {
   private float amount;
   private long categoryId;
   private String date;
+  private String note;
   private String categoryName;
   private String categoryImage;
 

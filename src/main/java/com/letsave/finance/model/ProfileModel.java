@@ -22,6 +22,9 @@ public class ProfileModel {
   private String phone;
   private Date birthday;
   private String avatar;
+  private String job;
+  private boolean isMale;
+  private int age;
 
   public ProfileModel(long accountId) {
     this.accountId = accountId;
