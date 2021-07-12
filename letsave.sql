@@ -45,8 +45,6 @@ CREATE TABLE `budgets` (
   CONSTRAINT `budgets_ibfk_2` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
-
 CREATE TABLE `profiles` (
   `accountId` bigint NOT NULL,
   `fullname` char(200) DEFAULT NULL,
@@ -54,9 +52,13 @@ CREATE TABLE `profiles` (
   `phone` char(11) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `avatar` text,
+  `job` varchar(200) DEFAULT NULL,
+  `isMale` bit(1) DEFAULT NULL,
+  `age` int DEFAULT NULL,
   PRIMARY KEY (`accountId`),
   CONSTRAINT `profiles_ibfk_1` FOREIGN KEY (`accountId`) REFERENCES `accounts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `transactions` (
   `id` bigint NOT NULL AUTO_INCREMENT,
