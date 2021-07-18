@@ -83,6 +83,10 @@ public class TransactionService {
     return mapper.findMonthlyTransaction(year, "type", type);
   }
 
+  public List<TransactionDTO> findAllMonthlyTransactions(int year, int month, String type) {
+    return mapper.findAllMonthlyTransactions(year, month, "type", type);
+  }
+
   public void updateTransaction(TransactionModel transactionModel) {
     mapper.updateTransaction(transactionModel);
   }

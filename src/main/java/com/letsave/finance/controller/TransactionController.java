@@ -54,6 +54,22 @@ public class TransactionController {
     return service.findMonthlyTransaction(year, type);
   }
 
+  @GetMapping("/month/all")
+  public List<TransactionDTO> getAllTransactionByMonth(@RequestParam(value = "year", required = false) Integer year, @RequestParam(value = "month", required = false) Integer month, @RequestParam(value = "type", required = true) String type) {
+
+    String date = service.getCurrentDate();
+    String[] parts = date.split("-");
+    if (year == null) {
+      year = Integer.parseInt(parts[0]);
+    }
+
+    if (month == null) {
+      month = Integer.parseInt(parts[1]);
+    }
+
+    return service.findAllMonthlyTransactions(year, month, type);
+  }
+
   @PutMapping(TransactionRoutes.TRANSACTION_BY_ID_URL)
   public void updateTransaction(@PathVariable("id") long id, @RequestBody TransactionModel transactionModel) {
     transactionModel.setId(id);

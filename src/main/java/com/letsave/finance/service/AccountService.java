@@ -138,4 +138,18 @@ public class AccountService {
     return account;
   }
 
+  public void login(String username, String password) {
+
+    AccountModel account = mapper.findAccountByColumn("username", username);
+    if (account == null) {
+      throw new EntityNotFoundException("Username doesn't existed");
+    }
+
+    if (!passwordEncoder.matches(password, account.getPassword())) {
+      throw new PasswordException("Wrong password!");
+    }
+
+  }
+
+
 }
