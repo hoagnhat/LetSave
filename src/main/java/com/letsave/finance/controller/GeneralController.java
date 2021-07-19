@@ -1,17 +1,16 @@
 package com.letsave.finance.controller;
 
+import com.letsave.finance.model.AccountModel;
 import com.letsave.finance.service.AccountService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /*
     @Created: 05 / 07 / 2021 - 3:46 PM
     @Author: Ngơ
 */
 @RestController
+@RequestMapping("/")
 public class GeneralController {
 
   private final AccountService accountService;
@@ -38,10 +37,10 @@ public class GeneralController {
     return "404 Not Found";
   }
 
-  @GetMapping("/login")
+  @PostMapping("/login")
   @ResponseStatus(value = HttpStatus.OK)
-  public void loginSuccess(@RequestParam("username") String username, @RequestParam("password") String password) {
-    accountService.login(username, password);
+  public void loginSuccess(@RequestBody AccountModel accountModel) {
+    accountService.login(accountModel.getUsername(), accountModel.getPassword());
   }
 
 }
