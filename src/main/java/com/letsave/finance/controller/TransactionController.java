@@ -8,6 +8,7 @@ import com.letsave.finance.common.routes.TransactionRoutes;
 import com.letsave.finance.model.TransactionDTO;
 import com.letsave.finance.model.TransactionModel;
 import com.letsave.finance.request.InsertTransactionRequest;
+import com.letsave.finance.request.TransactionRequest;
 import com.letsave.finance.service.AccountService;
 import com.letsave.finance.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
@@ -38,36 +39,36 @@ public class TransactionController {
   }
 
   @GetMapping(TransactionRoutes.TRANSACTION_BY_DATE_URL)
-  public List<TransactionDTO> getTransactionByDate(@RequestParam("date") String date) {
-    return service.findDailyTransaction(accountService.getCurrentAccount().getId(), date);
+  public List<TransactionDTO> getTransactionByDate(@RequestBody TransactionRequest request) {
+    return service.findDailyTransaction(accountService.getCurrentAccount().getId(), request.getDate());
   }
 
   @GetMapping(TransactionRoutes.TRANSACTION_BY_MONTH)
-  public List<TransactionDTO> getCurrentYearTransactionByMonth(@RequestParam(value = "year", required = false) Integer year, @RequestParam(value = "type", required = true) String type) {
+  public List<TransactionDTO> getCurrentYearTransactionByMonth(@RequestBody TransactionRequest request) {
 
-    if (year == null) {
+    if (request.getYear() == null) {
       String date = service.getCurrentDate();
       String[] parts = date.split("-");
-      year = Integer.parseInt(parts[0]);
+      request.setYear(Integer.parseInt(parts[0]));
     }
 
-    return service.findMonthlyTransaction(year, type);
+    return service.findMonthlyTransaction(request.getYear(), request.getType());
   }
 
   @GetMapping("/month/all")
-  public List<TransactionDTO> getAllTransactionByMonth(@RequestParam(value = "year", required = false) Integer year, @RequestParam(value = "month", required = false) Integer month, @RequestParam(value = "type", required = true) String type) {
+  public List<TransactionDTO> getAllTransactionByMonth(@RequestBody TransactionRequest request) {
 
     String date = service.getCurrentDate();
     String[] parts = date.split("-");
-    if (year == null) {
-      year = Integer.parseInt(parts[0]);
+    if (request.getYear() == 0) {
+      request.setYear(Integer.parseInt(parts[0]));
     }
 
-    if (month == null) {
-      month = Integer.parseInt(parts[1]);
+    if (request.getMonth() == null) {
+      request.setMonth(Integer.parseInt(parts[1]));
     }
 
-    return service.findAllMonthlyTransactions(year, month, type);
+    return service.findAllMonthlyTransactions(request.getYear(), request.getMonth(), request.getType());
   }
 
   @PutMapping(TransactionRoutes.TRANSACTION_BY_ID_URL)
