@@ -38,12 +38,12 @@ public class TransactionController {
     return service.findDailyTransaction(accountService.getCurrentAccount().getId(), service.getCurrentDate());
   }
 
-  @GetMapping(TransactionRoutes.TRANSACTION_BY_DATE_URL)
+  @PostMapping(TransactionRoutes.TRANSACTION_BY_DATE_URL)
   public List<TransactionDTO> getTransactionByDate(@RequestBody TransactionRequest request) {
     return service.findDailyTransaction(accountService.getCurrentAccount().getId(), request.getDate());
   }
 
-  @GetMapping(TransactionRoutes.TRANSACTION_BY_MONTH)
+  @PostMapping(TransactionRoutes.TRANSACTION_BY_MONTH)
   public List<TransactionDTO> getCurrentYearTransactionByMonth(@RequestBody TransactionRequest request) {
 
     if (request.getYear() == null) {
@@ -55,7 +55,7 @@ public class TransactionController {
     return service.findMonthlyTransaction(request.getYear(), request.getType());
   }
 
-  @GetMapping("/month/all")
+  @PostMapping("/month/all")
   public List<TransactionDTO> getAllTransactionByMonth(@RequestBody TransactionRequest request) {
 
     String date = service.getCurrentDate();
