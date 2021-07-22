@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TransactionRequest {
 
-    private Integer year = 0;
+    private Integer year;
     private Integer month;
     private String type;
     private String date;

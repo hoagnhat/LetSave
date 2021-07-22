@@ -16,14 +16,13 @@
 	</select>
 
 	<select id="findAllMonthlyTransactions" resultType="com.letsave.finance.model.TransactionDTO">
-		select t.id, t.type, sum(amount), t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
+		select t.id, t.type, t.amount, t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
-		where year(`date`) = #{year} and month(`date`) = #{month} and ${column} = #{value}
-		group by date;
+		where month(t.date) = #{month} and  year(t.date) = #{year} and ${column} = #{value};
 	</select>
 
 	<select id="findMonthlyTransaction" resultType="com.letsave.finance.model.TransactionDTO">
-		select t.id, t.type, sum(amount), t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
+		select t.id, t.type, round(sum(amount),2) as 'amount', t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
 		where year(`date`) = #{year} and ${column} = #{value}
 		group by date;
