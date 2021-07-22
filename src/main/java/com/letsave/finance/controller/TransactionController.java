@@ -60,7 +60,7 @@ public class TransactionController {
 
     String date = service.getCurrentDate();
     String[] parts = date.split("-");
-    if (request.getYear() == 0) {
+    if (request.getYear() == null) {
       request.setYear(Integer.parseInt(parts[0]));
     }
 
