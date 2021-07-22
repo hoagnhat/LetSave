@@ -70,7 +70,8 @@ public class TransactionService {
   }
 
   public List<TransactionDTO> findDailyTransaction(long accountId, String date) {
-    return mapper.findDailyTransaction(accountId, date);
+    List<TransactionDTO> list = mapper.findDailyTransaction(accountId, date);
+    return list;
   }
 
   public String getCurrentDate() {
