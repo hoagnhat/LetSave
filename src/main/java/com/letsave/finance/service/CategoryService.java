@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,11 +36,16 @@ public class CategoryService {
   @Transactional
   public void addDefaultCatgories(long accountId) {
 
-    CategoryModel food = mapper.findCategoryByColumn("name", "food");
-    CategoryModel travel = mapper.findCategoryByColumn("name", "travel");
+    ArrayList<String> defaultCategories = new ArrayList<>();
+    defaultCategories.add("food");
+    defaultCategories.add("travel");
+    defaultCategories.add("hospital");
+    defaultCategories.add("bank");
 
-    categoriesAccountsService.insertAccountCategory(accountId, food.getId());
-    categoriesAccountsService.insertAccountCategory(accountId, travel.getId());
+    for (String i : defaultCategories) {
+      CategoryModel cat = mapper.findCategoryByColumn("name", i);
+      categoriesAccountsService.insertAccountCategory(accountId, cat.getId());
+    }
 
   }
 
