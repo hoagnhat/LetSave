@@ -8,6 +8,8 @@ import com.letsave.finance.model.BugetModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface BudgetMapper {
 
@@ -16,9 +18,11 @@ public interface BudgetMapper {
   void updateBudget(@Param("categoryId") long categoryId, @Param("name") String name, @Param("amount") float amount, @Param("status") float status,
                     @Param("actualAmount") float actualAmount, @Param("id") long id, @Param("accountId") long accountId, @Param("month") int month, @Param("year") int year);
 
-  BugetModel findBudgetByColumn(@Param("column") String column, @Param("value") String value);
+  List<BugetModel> findBudgetByColumn(@Param("column") String column, @Param("value") String value);
 
   BugetModel findBudgetByCategoryId(@Param("categoryId") long categoryId, @Param("accountId") long accountId,
                                     @Param("month") int month, @Param("year") int year);
+
+  List<BugetModel> findBudgetByMonth(@Param("accountId") long accountId, @Param("month") int month, @Param("year") int year);
 
 }

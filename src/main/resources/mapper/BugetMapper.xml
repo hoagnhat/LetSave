@@ -29,4 +29,9 @@
 		where categoryId = #{categoryId} and accountId = #{accountId} and month(`date`) = #{month} and year(`date`) = #{year};
 	</select>
 
+	<select id="findBudgetByMonth" resultType="com.letsave.finance.model.BugetModel">
+		select * from budgets
+		where accountId = #{accountId} and month(`date`) = #{month} and year(`date`) = #{year};
+	</select>
+
 </mapper>
