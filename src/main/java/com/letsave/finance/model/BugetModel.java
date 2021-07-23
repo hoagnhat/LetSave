@@ -23,7 +23,7 @@ public class BugetModel {
   private String name;
   private float amount;
   private float status;
-  private Date date;
+  private String date;
   private float actualAmount;
   private String image;
 

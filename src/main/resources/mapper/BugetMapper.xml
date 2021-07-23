@@ -6,7 +6,7 @@
 
 	<insert id="insertBudget" parameterType="com.letsave.finance.model.BugetModel">
 		insert into budgets (accountId, categoryId, name, amount, status, date, actualAmount)
-		values (#{accountId}, #{categoryId}, #{name}, #{amount}, #{status}, curdate(), #{actualAmount});
+		values (#{accountId}, #{categoryId}, #{name}, #{amount}, #{status}, #{date}, #{actualAmount});
 	</insert>
 
 	<update id="updateBudget">
