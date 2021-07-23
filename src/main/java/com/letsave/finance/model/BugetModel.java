@@ -25,5 +25,6 @@ public class BugetModel {
   private float status;
   private Date date;
   private float actualAmount;
+  private String image;
 
 }

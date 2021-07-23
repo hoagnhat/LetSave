@@ -24,8 +24,7 @@
 	<select id="findMonthlyTransaction" resultType="com.letsave.finance.model.TransactionDTO">
 		select t.id, t.type, round(sum(amount),2) as 'amount', t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
-		where year(`date`) = #{year} and ${column} = #{value}
-		group by date;
+		where year(`date`) = #{year} and ${column} = #{value};
 	</select>
 
 	<update id="updateTransaction" parameterType="com.letsave.finance.model.TransactionModel">
