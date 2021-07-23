@@ -35,6 +35,13 @@ public class BudgetController {
     bugetModel.setAccountId(accountService.getCurrentAccount().getId());
     bugetModel.setStatus(0);
     bugetModel.setActualAmount(0);
+
+    String[] parts = bugetModel.getDate().split("-");
+
+    if (parts.length == 2) {
+      bugetModel.setDate(bugetModel.getDate() + "-01");
+    }
+
     service.insertBudget(bugetModel);
   }
 
