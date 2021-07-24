@@ -44,11 +44,10 @@ public class GeneralController {
     accountService.login(accountModel.getUsername(), accountModel.getPassword());
   }
 
-  @GetMapping("/logout")
+  @PostMapping("/logoutt")
   @ResponseStatus(value = HttpStatus.OK)
-  public String logout() {
+  public void logout() {
     SecurityContextHolder.clearContext();
-    return "logout successfull";
   }
 
 }
