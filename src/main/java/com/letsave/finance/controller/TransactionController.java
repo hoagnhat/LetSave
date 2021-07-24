@@ -68,7 +68,7 @@ public class TransactionController {
       request.setMonth(Integer.parseInt(parts[1]));
     }
 
-    return service.findAllMonthlyTransactions(request.getYear(), request.getMonth(), request.getType());
+    return service.findAllMonthlyTransactions(request.getYear(), request.getMonth(), request.getType(), accountService.getCurrentAccount().getId());
   }
 
   @PutMapping(TransactionRoutes.TRANSACTION_BY_ID_URL)

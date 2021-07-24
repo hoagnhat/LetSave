@@ -18,7 +18,7 @@
 	<select id="findAllMonthlyTransactions" resultType="com.letsave.finance.model.TransactionDTO">
 		select t.id, t.type, t.amount, t.categoryId, t.date, t.note, c.name as 'categoryName', c.image as 'categoryImage'
 		from transactions t join categories c on t.categoryId = c.id
-		where month(t.date) = #{month} and  year(t.date) = #{year} and ${column} = #{value};
+		where month(t.date) = #{month} and  year(t.date) = #{year} and ${column} = #{value} and accountId = #{accountId};
 	</select>
 
 	<select id="findMonthlyTransaction" resultType="com.letsave.finance.model.TransactionDTO">
