@@ -3,6 +3,7 @@ package com.letsave.finance.controller;
 import com.letsave.finance.model.AccountModel;
 import com.letsave.finance.service.AccountService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /*
@@ -41,6 +42,12 @@ public class GeneralController {
   @ResponseStatus(value = HttpStatus.OK)
   public void loginSuccess(@RequestBody AccountModel accountModel) {
     accountService.login(accountModel.getUsername(), accountModel.getPassword());
+  }
+
+  @GetMapping("/logout")
+  @ResponseStatus(value = HttpStatus.OK)
+  public void logout() {
+    SecurityContextHolder.clearContext();
   }
 
 }
