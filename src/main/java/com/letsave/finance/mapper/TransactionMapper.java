@@ -18,7 +18,7 @@ public interface TransactionMapper {
 
   List<TransactionDTO> findDailyTransaction(@Param("accountId") long accountId, @Param("date") String date);
 
-  List<TransactionDTO> findMonthlyTransaction(@Param("year") int year, @Param("column") String column, @Param("value") String value);
+  List<TransactionDTO> findMonthlyTransaction(@Param("year") int year, @Param("column") String column, @Param("value") String value, @Param("accountId") long accountId);
   List<TransactionDTO> findAllMonthlyTransactions(@Param("year") int year, @Param("month") int month, @Param("column") String column, @Param("value") String value);
 
   void updateTransaction(TransactionModel transactionModel);

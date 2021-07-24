@@ -52,7 +52,7 @@ public class TransactionController {
       request.setYear(Integer.parseInt(parts[0]));
     }
 
-    return service.findMonthlyTransaction(request.getYear(), request.getType());
+    return service.findMonthlyTransaction(request.getYear(), request.getType(), accountService.getCurrentAccount().getId());
   }
 
   @PostMapping("/month/all")

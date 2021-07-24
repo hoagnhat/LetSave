@@ -80,8 +80,8 @@ public class TransactionService {
     return dtf.format(now);
   }
 
-  public List<TransactionDTO> findMonthlyTransaction(int year, String type) {
-    return mapper.findMonthlyTransaction(year, "type", type);
+  public List<TransactionDTO> findMonthlyTransaction(int year, String type, long accountId) {
+    return mapper.findMonthlyTransaction(year, "type", type, accountId);
   }
 
   public List<TransactionDTO> findAllMonthlyTransactions(int year, int month, String type) {
