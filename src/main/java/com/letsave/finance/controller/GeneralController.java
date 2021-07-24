@@ -46,8 +46,9 @@ public class GeneralController {
 
   @GetMapping("/logout")
   @ResponseStatus(value = HttpStatus.OK)
-  public void logout() {
+  public String logout() {
     SecurityContextHolder.clearContext();
+    return "logout successfull";
   }
 
 }
